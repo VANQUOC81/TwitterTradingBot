@@ -4,7 +4,7 @@ from AlgorithmImports import *
 from nltk.sentiment import SentimentIntensityAnalyzer
 # endregion
 
-class TwitterAlgorithm(QCAlgorithm):
+class TwitterTradingAlgorithm(QCAlgorithm):
 
     def Initialize(self):
         # set the date to Kaggle's available Richard Branson tweet data
