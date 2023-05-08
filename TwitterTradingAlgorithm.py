@@ -26,18 +26,20 @@ class TwitterAlgorithm(QCAlgorithm):
                         self.ExitPositions)
 
     def OnData(self, data: Slice):
+        # Check if the 'branson' symbol is in the data slice
         if self.branson in data:
+            # Retrieve the sentiment score and tweet content
             score = data[self.branson].Value
             content = data[self.branson].Tweet
 
-            # if compound score is higher than 0.5 buy
+            # Buy if the compound score is higher than 0.5
             if score > 0.5:
                 self.SetHoldings(self.spce, 1)
-            # if compound score is lower than -0.5 buy
+            # Sell (short) if the compound score is lower than -0.5
             elif score < -0.5:
                 self.SetHoldings(self.spce, -1)
 
-            # log any score above 0.5 for both short and long
+            # Log any score above 0.5 for both long and short positions
             if abs(score) > 0.5:
                 self.Log(f"Score {score}, Tweet {content}")
 
